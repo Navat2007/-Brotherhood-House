@@ -7,6 +7,7 @@ public class ElectricGameUI : MonoBehaviour
     private void Awake()
     {
         EventBus.UIEvents.OnElectricGameWindowShow += OnWindowShow;
+        EventBus.StartLevelEvent += OnWindowHide;
         
         _panel.gameObject.SetActive(false);
     }
@@ -14,5 +15,10 @@ public class ElectricGameUI : MonoBehaviour
     private void OnWindowShow()
     {
         _panel.gameObject.SetActive(true);
+    }
+    
+    private void OnWindowHide()
+    {
+        _panel.gameObject.SetActive(false);
     }
 }

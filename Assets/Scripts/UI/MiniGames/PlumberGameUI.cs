@@ -7,6 +7,7 @@ public class PlumberGameUI : MonoBehaviour
     private void Awake()
     {
         EventBus.UIEvents.OnPlumberGameWindowShow += OnWindowShow;
+        EventBus.StartLevelEvent += OnWindowHide;
         
         _panel.gameObject.SetActive(false);
     }
@@ -14,5 +15,10 @@ public class PlumberGameUI : MonoBehaviour
     private void OnWindowShow()
     {
         _panel.gameObject.SetActive(true);
+    }
+    
+    private void OnWindowHide()
+    {
+        _panel.gameObject.SetActive(false);
     }
 }

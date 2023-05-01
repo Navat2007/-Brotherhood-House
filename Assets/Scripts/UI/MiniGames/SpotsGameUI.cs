@@ -7,6 +7,7 @@ public class SpotsGameUI : MonoBehaviour
     private void Awake()
     {
         EventBus.UIEvents.OnSpotsGameWindowShow += OnWindowShow;
+        EventBus.StartLevelEvent += OnWindowHide;
         
         _panel.gameObject.SetActive(false);
     }
@@ -14,5 +15,10 @@ public class SpotsGameUI : MonoBehaviour
     private void OnWindowShow()
     {
         _panel.gameObject.SetActive(true);
+    }
+    
+    private void OnWindowHide()
+    {
+        _panel.gameObject.SetActive(false);
     }
 }
