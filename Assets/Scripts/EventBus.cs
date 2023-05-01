@@ -14,6 +14,10 @@ public static class EventBus
     {
         public static Action<Vector2> OnInputMoveChange;
         public static Action OnJump;
+        public static Action OnInteract;
+        public static Action OnDrop;
+        public static Action OnAccelerationStart;
+        public static Action OnAccelerationEnd;
     }
     
     public static class UIEvents

@@ -8,6 +8,8 @@ public static class ServiceLocator
     public static InputManager InputManager;
     public static SaveLoadManager SaveLoadManager;
     
+    public static Player Player;
+    
     public static Timer Timer;
 
     public static void CheckServices()
@@ -29,5 +31,8 @@ public static class ServiceLocator
         
         if(Timer == null)
             Debug.Log("Timer is null");
+        
+        if(Player == null)
+            Debug.Log("Player is null");
     }
 }

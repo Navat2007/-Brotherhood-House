@@ -13,7 +13,6 @@ public class MainMenuUI : MonoBehaviour
         _playButton.onClick.AddListener(() =>
         {
             EventBus.StartLevelEvent?.Invoke();
-            Debug.Log("Click play");
         });
         
         _optionsButton.onClick.AddListener(() =>
