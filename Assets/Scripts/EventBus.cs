@@ -27,8 +27,10 @@ public static class EventBus
         public static Action OnPauseWindowShow;
         public static Action OnPauseWindowHide;
         public static Action OnSettingsWindowShow;
-        public static Action OnLeaderBoardWindowShow;
         public static Action OnGameOverWindowShow;
+        public static Action OnPlumberGameWindowShow;
+        public static Action OnSpotsGameWindowShow;
+        public static Action OnElectricGameWindowShow;
     }
     
     public static class SoundEvents

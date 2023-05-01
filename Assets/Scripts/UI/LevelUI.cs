@@ -8,13 +8,33 @@ public class LevelUI : MonoBehaviour
     [SerializeField] private Transform _levelPanel;
     [SerializeField] private TMP_Text _timerText;
     [SerializeField] private Button _pauseButton;
-
+    
+    [Header("Мини игры")]
+    [SerializeField] private Button _plumberGameButton;
+    [SerializeField] private Button _electricGameButton;
+    [SerializeField] private Button _spotsGameButton;
+    
     private void Awake()
     {
         _pauseButton.onClick.AddListener(() =>
         {
             EventBus.PauseEvent?.Invoke();
             EventBus.UIEvents.OnPauseWindowShow?.Invoke();
+        });
+        
+        _plumberGameButton.onClick.AddListener(() =>
+        {
+            EventBus.UIEvents.OnPlumberGameWindowShow?.Invoke();
+        });
+        
+        _electricGameButton.onClick.AddListener(() =>
+        {
+            EventBus.UIEvents.OnElectricGameWindowShow?.Invoke();
+        });
+        
+        _spotsGameButton.onClick.AddListener(() =>
+        {
+            EventBus.UIEvents.OnSpotsGameWindowShow?.Invoke();
         });
         
         EventBus.StartLevelEvent += OnStartLevel;
