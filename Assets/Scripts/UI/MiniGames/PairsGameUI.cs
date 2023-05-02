@@ -24,6 +24,8 @@ public class PairsGameUI : MonoBehaviour
     private void OnWindowShow()
     {
         _panel.gameObject.SetActive(true);
+        EventBus.MiniGamesEvents.OnMiniGameStart?.Invoke();
+        EventBus.MiniGamesEvents.OnPairsGameStart?.Invoke();
     }
     
     private void OnWindowHide()

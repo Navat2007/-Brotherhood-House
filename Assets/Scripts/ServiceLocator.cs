@@ -10,6 +10,8 @@ public static class ServiceLocator
     
     public static Player Player;
     
+    public static SpotsGame SpotsGame;
+    
     public static Timer Timer;
 
     public static void CheckServices()

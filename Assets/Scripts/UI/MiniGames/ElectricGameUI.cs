@@ -24,6 +24,8 @@ public class ElectricGameUI : MonoBehaviour
     private void OnWindowShow()
     {
         _panel.gameObject.SetActive(true);
+        EventBus.MiniGamesEvents.OnMiniGameStart?.Invoke();
+        EventBus.MiniGamesEvents.OnElectricGameStart?.Invoke();
     }
     
     private void OnWindowHide()

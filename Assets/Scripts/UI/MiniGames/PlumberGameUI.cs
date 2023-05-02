@@ -24,6 +24,8 @@ public class PlumberGameUI : MonoBehaviour
     private void OnWindowShow()
     {
         _panel.gameObject.SetActive(true);
+        EventBus.MiniGamesEvents.OnMiniGameStart?.Invoke();
+        EventBus.MiniGamesEvents.OnPlumberGameStart?.Invoke();
     }
     
     private void OnWindowHide()
