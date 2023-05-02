@@ -13,6 +13,7 @@ public class LevelUI : MonoBehaviour
     [SerializeField] private Button _plumberGameButton;
     [SerializeField] private Button _electricGameButton;
     [SerializeField] private Button _spotsGameButton;
+    [SerializeField] private Button _pairsGameButton;
     
     private void Awake()
     {
@@ -35,6 +36,11 @@ public class LevelUI : MonoBehaviour
         _spotsGameButton.onClick.AddListener(() =>
         {
             EventBus.UIEvents.OnSpotsGameWindowShow?.Invoke();
+        });
+        
+        _pairsGameButton.onClick.AddListener(() =>
+        {
+            EventBus.UIEvents.OnPairsGameWindowShow?.Invoke();
         });
         
         EventBus.StartLevelEvent += OnStartLevel;

@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,6 +29,9 @@ public class InputManager : MonoBehaviour
             EnablePlayerInput();
         };
         EventBus.UIEvents.OnMainMenuWindowShow += OnEndLevel;
+
+        EventBus.MiniGamesEvents.OnMiniGameStart += DisablePlayerInput;
+        EventBus.MiniGamesEvents.OnMiniGameEnd += EnablePlayerInput;
     }
 
     private void Update()

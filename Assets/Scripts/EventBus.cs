@@ -31,6 +31,22 @@ public static class EventBus
         public static Action OnPlumberGameWindowShow;
         public static Action OnSpotsGameWindowShow;
         public static Action OnElectricGameWindowShow;
+        public static Action OnPairsGameWindowShow;
+    }
+    
+    public static class MiniGamesEvents
+    {
+        public static Action OnMiniGameStart;
+        public static Action OnMiniGameEnd;
+        
+        public static Action OnSpotsGameStart;
+        public static Action<bool> OnSpotsGameEnd;
+        public static Action OnElectricGameStart;
+        public static Action<bool> OnElectricGameEnd;
+        public static Action OnPairsGameStart;
+        public static Action<bool> OnPairsGameEnd;
+        public static Action OnPlumberGameStart;
+        public static Action<bool> OnPlumberGameEnd;
     }
     
     public static class SoundEvents
