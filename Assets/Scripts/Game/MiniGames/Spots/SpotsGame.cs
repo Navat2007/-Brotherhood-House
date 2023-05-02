@@ -26,6 +26,8 @@ public class SpotsGame : MonoBehaviour
     private float _timer = 1000;
     
     public event Action<float, bool> OnTimerChange;
+    
+    public bool IsGameRunning => _isGameRunning;
 
     public Vector3 GetMovePosition(Vector2 position)
     {

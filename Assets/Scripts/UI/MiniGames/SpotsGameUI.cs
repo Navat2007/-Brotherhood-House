@@ -22,7 +22,8 @@ public class SpotsGameUI : MonoBehaviour
         
         _closeButton.onClick.AddListener(() =>
         {
-            EventBus.MiniGamesEvents.OnSpotsGameEnd?.Invoke(false);
+            if(ServiceLocator.SpotsGame.IsGameRunning)
+                EventBus.MiniGamesEvents.OnSpotsGameEnd?.Invoke(false);
         });
         
         OnWindowHide();
