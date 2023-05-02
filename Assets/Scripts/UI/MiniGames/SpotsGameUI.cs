@@ -18,8 +18,7 @@ public class SpotsGameUI : MonoBehaviour
         EventBus.UIEvents.OnSpotsGameWindowShow += OnWindowShow;
         EventBus.StartLevelEvent += OnWindowHide;
         EventBus.MiniGamesEvents.OnSpotsGameEnd += OnGameEnd;
-        ServiceLocator.SpotsGame.OnTimerChange += OnTimerChange;
-        
+
         _closeButton.onClick.AddListener(() =>
         {
             if(ServiceLocator.SpotsGame.IsGameRunning)
@@ -27,6 +26,11 @@ public class SpotsGameUI : MonoBehaviour
         });
         
         OnWindowHide();
+    }
+
+    private void Start()
+    {
+        ServiceLocator.SpotsGame.OnTimerChange += OnTimerChange;
     }
 
     private void OnTimerChange(float time, bool isLowTime)
@@ -59,7 +63,6 @@ public class SpotsGameUI : MonoBehaviour
         _panel.gameObject.SetActive(true);
         EventBus.MiniGamesEvents.OnMiniGameStart?.Invoke();
         EventBus.MiniGamesEvents.OnSpotsGameStart?.Invoke();
-        
     }
     
     private void OnWindowHide()
@@ -73,6 +76,7 @@ public class SpotsGameUI : MonoBehaviour
     {
         yield return new WaitForSeconds(_timeToClose);
         
+        EventBus.MiniGamesEvents.OnMiniGameEnd?.Invoke();
         OnWindowHide();
     }
 }
