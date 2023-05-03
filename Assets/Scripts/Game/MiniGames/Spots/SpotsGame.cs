@@ -6,7 +6,7 @@ public class SpotsGame : MonoBehaviour
 {
     [SerializeField] private Transform _spotsBox;
     [SerializeField] private SpotItem _spotItemPrefab;
-    [SerializeField] private int _secondsToLoose = 60;
+    [SerializeField] private int _secondsToLoose = 90;
 
     private Dictionary<Vector2, SpotItem> _spots = new Dictionary<Vector2, SpotItem>();
 
@@ -66,6 +66,7 @@ public class SpotsGame : MonoBehaviour
     {
         if (_isGameRunning)
         {
+            Debug.Log(_timer);
             _timer -= Time.deltaTime;
             
             OnTimerChange?.Invoke(_timer, _timer / _secondsToLoose < 0.3f);

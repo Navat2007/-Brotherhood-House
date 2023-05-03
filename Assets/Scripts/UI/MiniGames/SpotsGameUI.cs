@@ -36,7 +36,7 @@ public class SpotsGameUI : MonoBehaviour
     private void OnTimerChange(float time, bool isLowTime)
     {
         TimeSpan timeSpan = TimeSpan.FromSeconds(time);
-        _timerText.text = $"{timeSpan:ss}";
+        _timerText.text = $"{(int)timeSpan.TotalSeconds}";
         
         if(isLowTime)
             _timerText.color = Color.red;
@@ -58,6 +58,14 @@ public class SpotsGameUI : MonoBehaviour
         StartCoroutine(FadeWindow());
     }
 
+    private IEnumerator FadeWindow()
+    {
+        yield return new WaitForSeconds(_timeToClose);
+        
+        EventBus.MiniGamesEvents.OnMiniGameEnd?.Invoke();
+        OnWindowHide();
+    }
+    
     private void OnWindowShow()
     {
         _panel.gameObject.SetActive(true);
@@ -70,13 +78,5 @@ public class SpotsGameUI : MonoBehaviour
         _panel.gameObject.SetActive(false);
         _losePanel.gameObject.SetActive(false);
         _winPanel.gameObject.SetActive(false);
-    }
-
-    private IEnumerator FadeWindow()
-    {
-        yield return new WaitForSeconds(_timeToClose);
-        
-        EventBus.MiniGamesEvents.OnMiniGameEnd?.Invoke();
-        OnWindowHide();
     }
 }
