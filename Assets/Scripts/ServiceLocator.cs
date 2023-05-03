@@ -11,6 +11,7 @@ public static class ServiceLocator
     public static Player Player;
     
     public static SpotsGame SpotsGame;
+    public static PlumberGame PlumberGame;
     
     public static Timer Timer;
 

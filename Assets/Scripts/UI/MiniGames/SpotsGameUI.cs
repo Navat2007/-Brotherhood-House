@@ -10,7 +10,7 @@ public class SpotsGameUI : MonoBehaviour
     [SerializeField] private Button _closeButton;
     [SerializeField] private Transform _winPanel;
     [SerializeField] private Transform _losePanel;
-    [SerializeField] private float _timeToClose = 2f;
+    [SerializeField] private float _timeToClose = 1.5f;
     [SerializeField] private TMP_Text _timerText;
     
     private void Awake()
