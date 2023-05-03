@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,18 +21,33 @@ public class InputManager : MonoBehaviour
         
         EventBus.StartLevelEvent += OnStartLevel;
         EventBus.EndLevelEvent += OnEndLevel;
-        EventBus.PauseEvent += () =>
-        {
-            DisablePlayerInput();
-        };
-        EventBus.UnPauseEvent += () =>
-        {
-            EnablePlayerInput();
-        };
+        EventBus.PauseEvent += DisablePlayerInput;
+        EventBus.UnPauseEvent += EnablePlayerInput;
         EventBus.UIEvents.OnMainMenuWindowShow += OnEndLevel;
 
+        EventBus.PlayerEvents.OnDeath += DisablePlayerInput;
         EventBus.MiniGamesEvents.OnMiniGameStart += DisablePlayerInput;
         EventBus.MiniGamesEvents.OnMiniGameEnd += EnablePlayerInput;
+    }
+
+    private void OnDestroy()
+    {
+        _playerInput.Player.Interact.performed -= OnInteract;
+        _playerInput.Player.Drop.performed -= OnDrop;
+        _playerInput.Player.Jump.performed -= OnJump;
+        _playerInput.Player.Acceleration.performed -= OnAccelerationStart;
+        _playerInput.Player.Acceleration.canceled -= OnAccelerationEnd;
+        _playerInput.UI.Pause.performed -= OnPause;
+        
+        EventBus.StartLevelEvent -= OnStartLevel;
+        EventBus.EndLevelEvent -= OnEndLevel;
+        EventBus.PauseEvent -= DisablePlayerInput;
+        EventBus.UnPauseEvent -= EnablePlayerInput;
+        EventBus.UIEvents.OnMainMenuWindowShow -= OnEndLevel;
+
+        EventBus.PlayerEvents.OnDeath -= DisablePlayerInput;
+        EventBus.MiniGamesEvents.OnMiniGameStart -= DisablePlayerInput;
+        EventBus.MiniGamesEvents.OnMiniGameEnd -= EnablePlayerInput;
     }
 
     private void Update()

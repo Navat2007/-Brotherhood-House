@@ -54,10 +54,17 @@ public class PairsCard : MonoBehaviour
         _button = GetComponent<Button>();
         _image = GetComponent<Image>();
 
-        _button.onClick.AddListener(() =>
-        {
-            if(_isOpened == false && _isDone == false)
-                OnCardOpened?.Invoke(this);
-        });
+        _button.onClick.AddListener(OnButtonClick);
+    }
+
+    private void OnDestroy()
+    {
+        _button.onClick.RemoveListener(OnButtonClick);
+    }
+
+    private void OnButtonClick()
+    {
+        if(_isOpened == false && _isDone == false)
+            OnCardOpened?.Invoke(this);
     }
 }

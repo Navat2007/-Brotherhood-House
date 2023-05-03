@@ -44,6 +44,7 @@ public class PauseUI : MonoBehaviour
     private void OnDestroy()
     {
         EventBus.UIEvents.OnPauseWindowShow -= OnPauseWindowShow;
+        EventBus.UIEvents.OnPauseWindowHide -= OnPauseWindowHide;
     }
 
     private void OnPauseWindowShow()

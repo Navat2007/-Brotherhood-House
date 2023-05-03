@@ -10,6 +10,11 @@ public static class EventBus
     public static Action PauseEvent;
     public static Action UnPauseEvent;
 
+    public static class PlayerEvents
+    {
+        public static Action OnDeath;
+    }
+
     public static class InputEvents
     {
         public static Action<Vector2> OnInputMoveChange;

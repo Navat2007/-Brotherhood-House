@@ -19,18 +19,29 @@ public class PairsGameUI : MonoBehaviour
         EventBus.StartLevelEvent += OnWindowHide;
         EventBus.MiniGamesEvents.OnPairsGameEnd += OnGameEnd;
         
-        _closeButton.onClick.AddListener(() =>
-        {
-            if(ServiceLocator.PairsGame.IsGameRunning)
-                EventBus.MiniGamesEvents.OnPairsGameEnd?.Invoke(false);
-        });
+        _closeButton.onClick.AddListener(OnCloseButtonClick);
         
         OnWindowHide();
+    }
+    
+    private void OnDestroy()
+    {
+        EventBus.UIEvents.OnPairsGameWindowShow -= OnWindowShow;
+        EventBus.StartLevelEvent -= OnWindowHide;
+        EventBus.MiniGamesEvents.OnPairsGameEnd -= OnGameEnd;
+
+        _closeButton.onClick.RemoveListener(OnCloseButtonClick);
     }
     
     private void Start()
     {
         ServiceLocator.PairsGame.OnTimerChange += OnTimerChange;
+    }
+    
+    private void OnCloseButtonClick()
+    {
+        if(ServiceLocator.PairsGame.IsGameRunning)
+            EventBus.MiniGamesEvents.OnPairsGameEnd?.Invoke(false);
     }
 
     private void OnTimerChange(float time, bool isLowTime)

@@ -30,6 +30,11 @@ public class SpotItem : MonoBehaviour
         _button.onClick.AddListener(OnClick);
     }
 
+    private void OnDestroy()
+    {
+        _button.onClick.RemoveListener(OnClick);
+    }
+
     public void SetNumber(int number)
     {
         _number = number;

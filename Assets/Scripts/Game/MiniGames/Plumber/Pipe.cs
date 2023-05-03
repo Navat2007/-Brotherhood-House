@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,6 +38,11 @@ public class Pipe : MonoBehaviour
         _button.onClick.AddListener(OnClick);
 
         _startingRotation = transform.eulerAngles.z;
+    }
+
+    private void OnDestroy()
+    {
+        _button.onClick.RemoveListener(OnClick);
     }
 
     private void OnEnable()

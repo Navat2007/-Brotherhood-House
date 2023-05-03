@@ -113,11 +113,6 @@ public class PlumberGame : MonoBehaviour
         _isGameRunning = true;
         _timer = _secondsToLoose;
         _plumberBox.gameObject.SetActive(true);
-
-        foreach (Pipe pipe in _pipes)
-        {
-            
-        }
         
         CheckGameWin();
     }

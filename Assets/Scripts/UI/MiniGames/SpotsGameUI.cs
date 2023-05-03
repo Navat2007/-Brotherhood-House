@@ -19,11 +19,7 @@ public class SpotsGameUI : MonoBehaviour
         EventBus.StartLevelEvent += OnWindowHide;
         EventBus.MiniGamesEvents.OnSpotsGameEnd += OnGameEnd;
 
-        _closeButton.onClick.AddListener(() =>
-        {
-            if(ServiceLocator.SpotsGame.IsGameRunning)
-                EventBus.MiniGamesEvents.OnSpotsGameEnd?.Invoke(false);
-        });
+        _closeButton.onClick.AddListener(OnCloseButtonClick);
         
         OnWindowHide();
     }
@@ -31,6 +27,21 @@ public class SpotsGameUI : MonoBehaviour
     private void Start()
     {
         ServiceLocator.SpotsGame.OnTimerChange += OnTimerChange;
+    }
+    
+    private void OnDestroy()
+    {
+        EventBus.UIEvents.OnSpotsGameWindowShow -= OnWindowShow;
+        EventBus.StartLevelEvent -= OnWindowHide;
+        EventBus.MiniGamesEvents.OnSpotsGameEnd -= OnGameEnd;
+
+        _closeButton.onClick.RemoveListener(OnCloseButtonClick);
+    }
+    
+    private void OnCloseButtonClick()
+    {
+        if(ServiceLocator.SpotsGame.IsGameRunning)
+            EventBus.MiniGamesEvents.OnSpotsGameEnd?.Invoke(false);
     }
 
     private void OnTimerChange(float time, bool isLowTime)

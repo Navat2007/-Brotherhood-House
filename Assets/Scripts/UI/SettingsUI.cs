@@ -49,6 +49,11 @@ public class SettingsUI : MonoBehaviour
         EventBus.UIEvents.OnSettingsWindowShow += OnSettingsWindowShow;
     }
 
+    private void OnDestroy()
+    {
+        EventBus.UIEvents.OnSettingsWindowShow -= OnSettingsWindowShow;
+    }
+
     private async void Start()
     {
         const float defaultSoundVolume = 0.5f;

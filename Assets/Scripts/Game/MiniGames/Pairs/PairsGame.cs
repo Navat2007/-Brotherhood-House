@@ -41,6 +41,12 @@ public class PairsGame : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        EventBus.MiniGamesEvents.OnPairsGameStart -= OnGameStart;
+        EventBus.MiniGamesEvents.OnPairsGameEnd -= OnGameEnd;
+    }
+
     private void Update()
     {
         if (_isGameRunning)
@@ -191,10 +197,13 @@ public class PairsGame : MonoBehaviour
         _isCanOpenCard = false;
         
         yield return new WaitForSeconds(_timeToCardClose);
-        
-        openedCards[0].CloseCard();
-        openedCards[1].CloseCard();
-        
+
+        if (_isGameRunning)
+        {
+            openedCards[0].CloseCard();
+            openedCards[1].CloseCard();
+        }
+
         _isCanOpenCard = true;
     }
     

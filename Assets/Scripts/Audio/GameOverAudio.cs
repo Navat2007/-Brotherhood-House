@@ -6,12 +6,12 @@ public class GameOverAudio : MonoBehaviour
     
     private void Awake()
     {
-        EventBus.EndLevelEvent += OnGameOver;
+        EventBus.PlayerEvents.OnDeath += OnGameOver;
     }
     
     private void OnDestroy()
     {
-        EventBus.EndLevelEvent -= OnGameOver;
+        EventBus.PlayerEvents.OnDeath -= OnGameOver;
     }
 
     private void OnGameOver()

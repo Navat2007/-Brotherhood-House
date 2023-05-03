@@ -59,6 +59,17 @@ public class Player : MonoBehaviour
         _jumpsLeft = _maxJumps;
     }
 
+    private void OnDestroy()
+    {
+        EventBus.StartLevelEvent -= Reset;
+        EventBus.InputEvents.OnInputMoveChange -= OnInputMoveChange;
+        EventBus.InputEvents.OnAccelerationStart -= () => { _isRunning = true; };
+        EventBus.InputEvents.OnAccelerationEnd -= () => { _isRunning = false; };
+        EventBus.InputEvents.OnJump -= OnJump;
+        EventBus.InputEvents.OnInteract -= OnInteract;
+        EventBus.InputEvents.OnDrop -= OnDrop;
+    }
+
     private void Update()
     {
         _isGrounded = Physics2D.OverlapCircle(_feet.position, 0.1f, _groundLayer) != null;

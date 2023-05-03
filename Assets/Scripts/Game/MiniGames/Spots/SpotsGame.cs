@@ -62,6 +62,12 @@ public class SpotsGame : MonoBehaviour
         EventBus.MiniGamesEvents.OnSpotsGameEnd += OnGameEnd;
     }
 
+    private void OnDestroy()
+    {
+        EventBus.MiniGamesEvents.OnSpotsGameStart -= OnGameStart;
+        EventBus.MiniGamesEvents.OnSpotsGameEnd -= OnGameEnd;
+    }
+
     private void Update()
     {
         if (_isGameRunning)

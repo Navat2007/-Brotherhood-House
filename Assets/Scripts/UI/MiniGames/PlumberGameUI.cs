@@ -19,13 +19,24 @@ public class PlumberGameUI : MonoBehaviour
         EventBus.StartLevelEvent += OnWindowHide;
         EventBus.MiniGamesEvents.OnPlumberGameEnd += OnGameEnd;
         
-        _closeButton.onClick.AddListener(() =>
-        {
-            if(ServiceLocator.PlumberGame.IsGameRunning)
-                EventBus.MiniGamesEvents.OnPlumberGameEnd?.Invoke(false);
-        });
+        _closeButton.onClick.AddListener(OnCloseButtonClick);
         
         OnWindowHide();
+    }
+    
+    private void OnDestroy()
+    {
+        EventBus.UIEvents.OnPlumberGameWindowShow -= OnWindowShow;
+        EventBus.StartLevelEvent -= OnWindowHide;
+        EventBus.MiniGamesEvents.OnPlumberGameEnd -= OnGameEnd;
+
+        _closeButton.onClick.RemoveListener(OnCloseButtonClick);
+    }
+    
+    private void OnCloseButtonClick()
+    {
+        if(ServiceLocator.PlumberGame.IsGameRunning)
+            EventBus.MiniGamesEvents.OnPlumberGameEnd?.Invoke(false);
     }
     
     private void Start()
