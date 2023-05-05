@@ -72,7 +72,6 @@ public class SpotsGame : MonoBehaviour
     {
         if (_isGameRunning)
         {
-            Debug.Log(_timer);
             _timer -= Time.deltaTime;
             
             OnTimerChange?.Invoke(_timer, _timer / _secondsToLoose < 0.3f);

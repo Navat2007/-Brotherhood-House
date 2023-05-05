@@ -14,6 +14,14 @@ public class LevelUI : MonoBehaviour
     [SerializeField] private Button _electricGameButton;
     [SerializeField] private Button _spotsGameButton;
     [SerializeField] private Button _pairsGameButton;
+    [SerializeField] private Button _plumberWinGameButton;
+    [SerializeField] private Button _spotsWinGameButton;
+    [SerializeField] private Button _pairsWinGameButton;
+    
+    [Header("Предметы")]
+    [SerializeField] private Button _wheelButton;
+    [SerializeField] private Button _flowerButton;
+    [SerializeField] private Button _pictureButton;
     
     private void Awake()
     {
@@ -41,6 +49,36 @@ public class LevelUI : MonoBehaviour
         _pairsGameButton.onClick.AddListener(() =>
         {
             EventBus.UIEvents.OnPairsGameWindowShow?.Invoke();
+        });
+        
+        _plumberWinGameButton.onClick.AddListener(() =>
+        {
+            EventBus.MiniGamesEvents.OnPlumberGameEnd?.Invoke(true);
+        });
+        
+        _spotsWinGameButton.onClick.AddListener(() =>
+        {
+            EventBus.MiniGamesEvents.OnSpotsGameEnd?.Invoke(true);
+        });
+        
+        _pairsWinGameButton.onClick.AddListener(() =>
+        {
+            EventBus.MiniGamesEvents.OnPairsGameEnd?.Invoke(true);
+        });
+        
+        _wheelButton.onClick.AddListener(() =>
+        {
+            EventBus.ItemEvents.OnWheelPickUp?.Invoke();
+        });
+        
+        _flowerButton.onClick.AddListener(() =>
+        {
+            EventBus.ItemEvents.OnFlowerPickUp?.Invoke();
+        });
+        
+        _pictureButton.onClick.AddListener(() =>
+        {
+            EventBus.ItemEvents.OnPicturePickUp?.Invoke();
         });
         
         EventBus.StartLevelEvent += OnStartLevel;

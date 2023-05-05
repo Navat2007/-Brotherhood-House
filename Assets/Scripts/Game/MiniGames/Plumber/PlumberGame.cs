@@ -92,7 +92,13 @@ public class PlumberGame : MonoBehaviour
         EventBus.MiniGamesEvents.OnPlumberGameStart += OnGameStart;
         EventBus.MiniGamesEvents.OnPlumberGameEnd += OnGameEnd;
     }
-    
+
+    private void OnDestroy()
+    {
+        EventBus.MiniGamesEvents.OnPlumberGameStart -= OnGameStart;
+        EventBus.MiniGamesEvents.OnPlumberGameEnd -= OnGameEnd;
+    }
+
     private void Update()
     {
         if (_isGameRunning)

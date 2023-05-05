@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     private bool _isRunning;
     private float _fallTimer;
     private GameObject _currentItem;
+    
+    public bool IsHaveItem => _currentItem != null;
 
     public void PickUpItem(GameObject item)
     {
@@ -119,12 +121,15 @@ public class Player : MonoBehaviour
     private void OnInteract()
     {
         Collider2D[] hits = new Collider2D[30];
-        var size = Physics2D.OverlapCircleNonAlloc(transform.position, 0.3f, hits, _interactLayer);
+        var size = Physics2D.OverlapCircleNonAlloc(transform.position, 1.0f, hits, _interactLayer);
+        
+        Debug.Log($"Hits: " + size);
         
         foreach (var hit in hits)
         {
             if (hit != null && hit.TryGetComponent(out IInteractable interactable))
             {
+                Debug.Log("Try Interact with " + interactable);
                 interactable.Interact();
             }
         }

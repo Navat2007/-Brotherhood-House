@@ -54,6 +54,14 @@ public static class EventBus
         public static Action<bool> OnPlumberGameEnd;
     }
     
+    public static class ItemEvents
+    {
+        public static Action OnWheelPickUp;
+        public static Action OnFlowerPickUp;
+        public static Action OnBatteryPickUp;
+        public static Action OnPicturePickUp;
+    }
+    
     public static class SoundEvents
     {
         public static Action OnSoundOn;
