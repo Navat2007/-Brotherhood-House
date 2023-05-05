@@ -25,6 +25,7 @@ public class InputManager : MonoBehaviour
         EventBus.UnPauseEvent += EnablePlayerInput;
         EventBus.UIEvents.OnMainMenuWindowShow += OnEndLevel;
 
+        EventBus.PlayerEvents.OnWin += DisablePlayerInput;
         EventBus.PlayerEvents.OnDeath += DisablePlayerInput;
         EventBus.MiniGamesEvents.OnMiniGameStart += DisablePlayerInput;
         EventBus.MiniGamesEvents.OnMiniGameEnd += EnablePlayerInput;
@@ -45,6 +46,7 @@ public class InputManager : MonoBehaviour
         EventBus.UnPauseEvent -= EnablePlayerInput;
         EventBus.UIEvents.OnMainMenuWindowShow -= OnEndLevel;
 
+        EventBus.PlayerEvents.OnWin -= DisablePlayerInput;
         EventBus.PlayerEvents.OnDeath -= DisablePlayerInput;
         EventBus.MiniGamesEvents.OnMiniGameStart -= DisablePlayerInput;
         EventBus.MiniGamesEvents.OnMiniGameEnd -= EnablePlayerInput;

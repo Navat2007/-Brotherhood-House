@@ -12,6 +12,7 @@ public static class EventBus
 
     public static class PlayerEvents
     {
+        public static Action OnWin;
         public static Action OnDeath;
     }
 

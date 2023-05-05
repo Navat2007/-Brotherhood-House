@@ -4,6 +4,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private const string ANIMATOR_WALK = "Walk";
+    private const string ANIMATOR_RUN = "Run";
+    private const string ANIMATOR_UP = "Up";
+    private const string ANIMATOR_DOWN = "Down";
     
     [SerializeField] private float _speed = 100;
     [SerializeField] private float _acceleration = 2;
@@ -56,10 +59,13 @@ public class Player : MonoBehaviour
         EventBus.InputEvents.OnJump += OnJump;
         EventBus.InputEvents.OnInteract += OnInteract;
         EventBus.InputEvents.OnDrop += OnDrop;
+        EventBus.PlayerEvents.OnWin += OnWin;
         
         _startPosition = transform.position;
         _jumpsLeft = _maxJumps;
     }
+
+    
 
     private void OnDestroy()
     {
@@ -70,6 +76,7 @@ public class Player : MonoBehaviour
         EventBus.InputEvents.OnJump -= OnJump;
         EventBus.InputEvents.OnInteract -= OnInteract;
         EventBus.InputEvents.OnDrop -= OnDrop;
+        EventBus.PlayerEvents.OnWin -= OnWin;
     }
 
     private void Update()
@@ -79,6 +86,15 @@ public class Player : MonoBehaviour
         if (_isGrounded)
         {
             _fallTimer = 0;
+            if (_animator.GetBool(ANIMATOR_UP) == true)
+            {
+                _animator.SetBool(ANIMATOR_UP, false);
+            }
+            
+            if (_animator.GetBool(ANIMATOR_DOWN) == true)
+            {
+                _animator.SetBool(ANIMATOR_DOWN, false);
+            }
         }
         else
         {
@@ -87,6 +103,24 @@ public class Player : MonoBehaviour
             var downForce = _downPull * _fallTimer * _fallTimer;
             
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y - downForce);
+            
+            if(_rigidbody.velocity.y > 0)
+            {
+                if (_animator.GetBool(ANIMATOR_UP) == false)
+                {
+                    _animator.SetBool(ANIMATOR_UP, true);
+                    _animator.SetBool(ANIMATOR_DOWN, false);
+                }
+            }
+            
+            if(_rigidbody.velocity.y < 0)
+            {
+                if (_animator.GetBool(ANIMATOR_DOWN) == false)
+                {
+                    _animator.SetBool(ANIMATOR_UP, false);
+                    _animator.SetBool(ANIMATOR_DOWN, true);
+                }
+            }
         }
     }
 
@@ -96,6 +130,11 @@ public class Player : MonoBehaviour
         _jumpsLeft = _maxJumps;
         transform.position = _startPosition;
         _rigidbody.velocity = Vector2.zero;
+    }
+    
+    private void OnWin()
+    {
+        _rigidbody.simulated = false; 
     }
 
     private void OnJump()
@@ -116,6 +155,7 @@ public class Player : MonoBehaviour
             _spriteRenderer.flipX = moveDirection.x < 0;
         
         _animator.SetBool(ANIMATOR_WALK, moveDirection.x != 0);
+        _animator.SetBool(ANIMATOR_RUN, moveDirection.x != 0 && _isRunning);
     }
     
     private void OnInteract()
