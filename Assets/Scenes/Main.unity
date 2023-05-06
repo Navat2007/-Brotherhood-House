@@ -47564,6 +47564,7 @@ MonoBehaviour:
   _panel: {fileID: 1752736856}
   _closeButton: {fileID: 1455042228}
   _timeToShow: 1
+  _audioClip: {fileID: 0}
 --- !u!1 &1029209730
 GameObject:
   m_ObjectHideFlags: 0
@@ -126043,7 +126044,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -3084636510624977264, guid: fb9284837261aac49a2af973de2f326a, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 96d10ec6ce6841c4f8f1216fc2c19d04, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 942935944c0581e448d8f9cdfb652308, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
