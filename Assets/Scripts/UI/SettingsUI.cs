@@ -47,6 +47,8 @@ public class SettingsUI : MonoBehaviour
         });
         
         EventBus.UIEvents.OnSettingsWindowShow += OnSettingsWindowShow;
+        
+        _settingsPanel.gameObject.SetActive(false);
     }
 
     private void OnDestroy()
