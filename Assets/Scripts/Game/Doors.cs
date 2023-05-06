@@ -51,19 +51,19 @@ public class Doors : MonoBehaviour
 
     private void OnPairsGameEnd(bool success)
     {
-        if(success)
+        if(_windowDoor != null && success)
             Destroy(_windowDoor.gameObject);
     }
 
     private void OnSpotsGameEnd(bool success)
     {
-        if(success)
+        if(_galleryDoor != null && success)
             Destroy(_galleryDoor.gameObject);
     }
 
     private void OnPlumberGameEnd(bool success)
     {
-        if(success)
+        if(_garageDoor != null && success)
             Destroy(_garageDoor.gameObject);
     }
 }

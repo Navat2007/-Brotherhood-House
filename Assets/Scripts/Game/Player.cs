@@ -134,7 +134,13 @@ public class Player : MonoBehaviour
     
     private void OnWin()
     {
-        _rigidbody.simulated = false; 
+        _animator.SetBool(ANIMATOR_WALK, false);
+        _animator.SetBool(ANIMATOR_RUN, false);
+        _animator.SetBool(ANIMATOR_UP, false);
+        _animator.SetBool(ANIMATOR_DOWN, false);
+        
+        _rigidbody.simulated = false;
+        _animator.enabled = false;
     }
 
     private void OnJump()
