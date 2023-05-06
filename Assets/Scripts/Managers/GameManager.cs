@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -21,6 +22,14 @@ public class GameManager : MonoBehaviour
         EventBus.UnPauseEvent += OnResume;
         EventBus.StartLevelEvent += OnResume;
         EventBus.EndLevelEvent += OnPause;
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.PauseEvent -= OnPause;
+        EventBus.UnPauseEvent -= OnResume;
+        EventBus.StartLevelEvent -= OnResume;
+        EventBus.EndLevelEvent -= OnPause;
     }
 
     private void Start()

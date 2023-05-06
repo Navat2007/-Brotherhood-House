@@ -104,7 +104,6 @@ public class Monolith : MonoBehaviour
         
         while (_eyeSpriteRenderer.color.a < 1)
         {
-            Debug.Log(_eyeSpriteRenderer.color.a);
             _timer += Time.deltaTime;
             
             float alpha = Mathf.Lerp(0, 30, _timer / _eyeShowSpeed);
@@ -118,7 +117,6 @@ public class Monolith : MonoBehaviour
     
     private IEnumerator WinGame()
     {
-        Debug.Log("Win");
         yield return new WaitForSeconds(_timeToGameWin);
         
         EventBus.EndLevelEvent?.Invoke();

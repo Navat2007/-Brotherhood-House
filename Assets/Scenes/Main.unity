@@ -45608,6 +45608,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5829461800588776973}
     m_Modifications:
+    - target: {fileID: 3044270961681372657, guid: 76ae85fc122dd5542b2acbeaef235be8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.4688802
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044270961681372657, guid: 76ae85fc122dd5542b2acbeaef235be8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.40500003
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044270961681372657, guid: 76ae85fc122dd5542b2acbeaef235be8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.81000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044270961681372657, guid: 76ae85fc122dd5542b2acbeaef235be8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0306
+      objectReference: {fileID: 0}
+    - target: {fileID: 3044270961681372657, guid: 76ae85fc122dd5542b2acbeaef235be8, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6326593213381085202, guid: 76ae85fc122dd5542b2acbeaef235be8, type: 3}
       propertyPath: m_Name
       value: Door
@@ -45618,7 +45638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8017198236878768489, guid: 76ae85fc122dd5542b2acbeaef235be8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 8017198236878768489, guid: 76ae85fc122dd5542b2acbeaef235be8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -45656,6 +45676,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8352199553608542202, guid: 76ae85fc122dd5542b2acbeaef235be8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: deff3ebb9203a714fad49d60c0258ea1, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -47539,6 +47563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _panel: {fileID: 1752736856}
   _closeButton: {fileID: 1455042228}
+  _timeToShow: 1
 --- !u!1 &1029209730
 GameObject:
   m_ObjectHideFlags: 0
@@ -92910,8 +92935,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u0430\u043C \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0432\u0437\u043B\u043E\u043C\u0430\u0442\u044C
-    \u0434\u043E\u043C!"
+  m_text: "\u041A\u043E\u043D\u0435\u0446 \u044D\u0442\u043E \u0442\u043E\u043B\u044C\u043A\u043E
+    \u043D\u0430\u0447\u0430\u043B\u043E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -118764,7 +118789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &2846700464126180687
 GameObject:
   m_ObjectHideFlags: 0
@@ -122185,7 +122210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &4133356331154305322
 GameObject:
   m_ObjectHideFlags: 0
@@ -122531,7 +122556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 320.9}
+  m_AnchoredPosition: {x: 0, y: 16}
   m_SizeDelta: {x: 1219.7241, y: 161.18509}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4344196659624550831
@@ -136131,8 +136156,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u0430\u043C \u043D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C
-    \u0441\u0431\u0435\u0436\u0430\u0442\u044C \u0438\u0437 \u0434\u043E\u043C\u0430"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -136159,7 +136183,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 64
   m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 1
