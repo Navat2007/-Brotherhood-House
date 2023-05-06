@@ -20,7 +20,7 @@ public class LetterUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventBus.UIEvents.OnSettingsWindowShow -= OnStart;
+        EventBus.StartLevelEvent -= OnStart;
     }
     
     private void OnStart()
