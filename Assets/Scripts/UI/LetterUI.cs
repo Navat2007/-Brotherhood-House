@@ -7,6 +7,7 @@ public class LetterUI : MonoBehaviour
     [SerializeField] private Transform _panel;
     [SerializeField] private Button _closeButton;
     [SerializeField] private float _timeToShow = 1f;
+    [SerializeField] private AudioClip _audioClip;
     
     private float _timer;
     private bool _isOpen;
@@ -29,6 +30,8 @@ public class LetterUI : MonoBehaviour
 
         if (_timer > _timeToShow && _isOpen == false)
         {
+            _isOpen = true;
+            ServiceLocator.AudioManager.PlaySound(_audioClip);
             _panel.gameObject.SetActive(true);
             EventBus.PauseEvent?.Invoke();
         }
@@ -36,7 +39,6 @@ public class LetterUI : MonoBehaviour
 
     private void OnClickCloseButton()
     {
-        Debug.Log("Close");
         EventBus.UnPauseEvent?.Invoke();
         _panel.gameObject.SetActive(false);
     }
