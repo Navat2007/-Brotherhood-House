@@ -112,6 +112,6 @@ public class LevelUI : MonoBehaviour
     private void OnTimerChanged(float time)
     {
         TimeSpan timeSpan = TimeSpan.FromSeconds(time);
-        _timerText.text = $"Время: {timeSpan:m\\:ss}";
+        _timerText.text = $"{timeSpan:m\\:ss}";
     }
 }
