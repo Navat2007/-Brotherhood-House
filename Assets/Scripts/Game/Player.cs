@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private bool _isRunning;
     private float _fallTimer;
     private GameObject _currentItem;
+    private Sprite _startSprite;
     
     public bool IsHaveItem => _currentItem != null;
 
@@ -63,10 +64,10 @@ public class Player : MonoBehaviour
         
         _startPosition = transform.position;
         _jumpsLeft = _maxJumps;
+        
+        _startSprite = _spriteRenderer.sprite;
     }
-
     
-
     private void OnDestroy()
     {
         EventBus.StartLevelEvent -= Reset;
@@ -81,7 +82,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        _isGrounded = Physics2D.OverlapCircle(_feet.position, 0.1f, _groundLayer) != null;
+        _isGrounded = Physics2D.OverlapCircle(_feet.position, 0.2f, _groundLayer) != null;
         
         if (_isGrounded)
         {
@@ -141,6 +142,11 @@ public class Player : MonoBehaviour
         
         _rigidbody.simulated = false;
         _animator.enabled = false;
+
+        Destroy(_currentItem.gameObject);
+        _currentItem = null;
+        
+        _spriteRenderer.sprite = _startSprite;
     }
 
     private void OnJump()

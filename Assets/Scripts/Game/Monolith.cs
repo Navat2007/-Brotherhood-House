@@ -1,16 +1,21 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public class Monolith : MonoBehaviour
 {
+    [SerializeField] private CinemachineVirtualCamera _camera;
+    [SerializeField] private float _timeToGameWin = 3f;
     [SerializeField] private float _moveTime = 0.3f;
-    [SerializeField] private float _shrinkTime = 1f;
+    [SerializeField] private float _shakeTime = 2f;
     [SerializeField] private float _shrinkSpeed = 1f;
     [SerializeField] private Transform _eye;
     [SerializeField] private SpriteRenderer _eyeSpriteRenderer;
     [SerializeField] private float _eyeShowSpeed = 2f;
-    
+    [SerializeField] private List<Transform> _objectsToHide = new List<Transform>();
+
     private float _timer;
     
     private void Awake()
@@ -26,6 +31,11 @@ public class Monolith : MonoBehaviour
     [ContextMenu("Move")]
     private void OnWin()
     {
+        foreach (var item in _objectsToHide)
+        {
+            item.gameObject.SetActive(false);
+        }
+        
         ServiceLocator.Player.transform.SetParent(transform);
         StartCoroutine(MoveTo(new Vector3(0, 1.35f, 0)));
     }
@@ -53,7 +63,7 @@ public class Monolith : MonoBehaviour
         _timer = 0;
         Transform player = ServiceLocator.Player.transform;
         
-        while (player.localScale.x > 0.3f)
+        while (player.localScale.x > 0.1f)
         {
             _timer += Time.deltaTime;
             
@@ -61,6 +71,28 @@ public class Monolith : MonoBehaviour
             
             yield return null;
         }
+        
+        player.gameObject.SetActive(false);
+        
+        yield return StartCoroutine(Shake());
+    }
+    
+    private IEnumerator Shake()
+    {
+        _timer = 0;
+
+        CinemachineBasicMultiChannelPerlin _perlin =
+            _camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        _perlin.m_AmplitudeGain = 3;
+        
+        while (_timer < _shakeTime)
+        {
+            _timer += Time.deltaTime;
+            
+            yield return null;
+        }
+        
+        _perlin.m_AmplitudeGain = 0;
         
         yield return StartCoroutine(ShowEye());
     }
@@ -70,14 +102,25 @@ public class Monolith : MonoBehaviour
         _eye.gameObject.SetActive(true);
         _timer = 0;
         
-        while (_eyeSpriteRenderer.color.a < 255)
+        while (_eyeSpriteRenderer.color.a < 1)
         {
+            Debug.Log(_eyeSpriteRenderer.color.a);
             _timer += Time.deltaTime;
             
-            float alpha = Mathf.Lerp(0, 255, _timer / _eyeShowSpeed);
+            float alpha = Mathf.Lerp(0, 30, _timer / _eyeShowSpeed);
             _eyeSpriteRenderer.color = new Color(_eyeSpriteRenderer.color.r, _eyeSpriteRenderer.color.g, _eyeSpriteRenderer.color.b, alpha);
             
             yield return null;
         }
+        
+        StartCoroutine(WinGame());
+    }
+    
+    private IEnumerator WinGame()
+    {
+        Debug.Log("Win");
+        yield return new WaitForSeconds(_timeToGameWin);
+        
+        EventBus.EndLevelEvent?.Invoke();
     }
 }

@@ -20,7 +20,7 @@ public class WinGameUI : MonoBehaviour
     {
         _closeButton.onClick.RemoveListener(LoadScene);
         
-        EventBus.PlayerEvents.OnDeath -= OnWinGameWindowShow;
+        EventBus.EndLevelEvent -= OnWinGameWindowShow;
     }
 
     private void OnWinGameWindowShow()

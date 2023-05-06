@@ -7593,9 +7593,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b676779ce0ce95045a3283b278a2aa3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rectTransform: {fileID: 0}
+  _camera: {fileID: 0}
+  _timeToGameWin: 3
   _moveTime: 5
-  _smooth: 15
+  _shakeTime: 2
+  _shrinkSpeed: 1
+  _eye: {fileID: 0}
+  _eyeSpriteRenderer: {fileID: 0}
+  _eyeShowSpeed: 2
+  _objectsToHide: []
 --- !u!1 &4359929903489500346
 GameObject:
   m_ObjectHideFlags: 0

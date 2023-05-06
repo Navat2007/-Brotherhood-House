@@ -85,6 +85,7 @@ public class LevelUI : MonoBehaviour
         EventBus.EndLevelEvent += OnEndLevel;
         EventBus.UIEvents.OnMainMenuWindowShow += OnEndLevel;
         EventBus.UIEvents.OnTimerChanged += OnTimerChanged;
+        EventBus.PlayerEvents.OnWin += OnEndLevel;
         
         _levelPanel.gameObject.SetActive(false);
     }
@@ -95,6 +96,7 @@ public class LevelUI : MonoBehaviour
         EventBus.EndLevelEvent -= OnEndLevel;
         EventBus.UIEvents.OnMainMenuWindowShow -= OnEndLevel;
         EventBus.UIEvents.OnTimerChanged -= OnTimerChanged;
+        EventBus.PlayerEvents.OnWin -= OnEndLevel;
     }
     
     private void OnStartLevel()
