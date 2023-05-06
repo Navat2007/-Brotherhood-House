@@ -47564,7 +47564,7 @@ MonoBehaviour:
   _panel: {fileID: 1752736856}
   _closeButton: {fileID: 1455042228}
   _timeToShow: 1
-  _audioClip: {fileID: 0}
+  _audioClip: {fileID: 8300000, guid: 3b3746ec5d2f2bf4c8f6620221bcecc9, type: 3}
 --- !u!1 &1029209730
 GameObject:
   m_ObjectHideFlags: 0
